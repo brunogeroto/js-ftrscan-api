@@ -1,12 +1,12 @@
 {
-  "name": "js-ftrscan-api",
+  "name": "@brunogeroto/js-ftrscan-api",
   "version": "1.0.0",
   "description": "Node addon api for ftrScanApi",
   "author": "Bruno Geroto",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/brunogeroto/js-ftrscan-api.git"
+    "url": "https://github.com/brunogeroto/js-ftrscan-api"
   },
   "main": "index.js",
   "gypfile": true,
@@ -27,5 +27,8 @@
   "devDependencies": {
     "node-gyp": "^8.1.0",
     "prebuild": "^10.0.1"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
