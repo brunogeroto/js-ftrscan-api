@@ -32,7 +32,7 @@
             "./src/index.cpp"
           ],
           "libraries": [
-            "<(module_root_dir)/src/lib/ftrScanAPI.dll"
+            "<(module_root_dir)/src/lib/ftrScanAPI.lib"
           ],
           "include_dirs": [
             "<!@(node -p \"require('node-addon-api').include\")"
