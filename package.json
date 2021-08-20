@@ -14,7 +14,8 @@
     "install": "prebuild-install --runtime napi || node-gyp rebuild",
     "rebuild": "node-gyp rebuild",
     "prebuild": "prebuild --runtime napi --all --strip --verbose",
-    "upload": "prebuild --runtime napi --upload ${GITHUB_TOKEN}"
+    "upload": "prebuild --runtime napi --upload ${GITHUB_TOKEN}",
+    "upload:win": "prebuild --runtime napi --upload %GITHUB_TOKEN%"
   },
   "binary": {
     "napi_versions": [
