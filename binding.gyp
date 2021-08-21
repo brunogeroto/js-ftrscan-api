@@ -1,48 +1,44 @@
 {
-  "conditions": [
-    ['OS=="linux"', {
-      "targets": [
-        {
-          "target_name": "js-ftrscan-api",
-          "cflags!": [ "-fno-exceptions" ],
-          "cflags_cc!": [ "-fno-exceptions" ],
-          "sources": [
-            "./src/index.cpp"
-          ],
+  "targets": [
+    {
+      "target_name": "js-ftrscan-api",
+      "cflags!": [ "-fno-exceptions" ],
+      "cflags_cc!": [ "-fno-exceptions" ],
+      "sources": [
+        "./src/index.cpp"
+      ],
+      "include_dirs": [
+        "<!@(node -p \"require('node-addon-api').include\")",
+      ],
+      "defines": [
+        "NAPI_VERSION=<(napi_build_version)",
+        "NAPI_DISABLE_CPP_EXCEPTIONS"
+      ],
+      'conditions': [
+        ['OS=="linux"', {
           "libraries": [
             "<(module_root_dir)/src/lib/libScanAPI.so"
           ],
-          "include_dirs": [
-            "<!@(node -p \"require('node-addon-api').include\")",
-          ],
-          "defines": [
-            "NAPI_VERSION=<(napi_build_version)",
-            "NAPI_DISABLE_CPP_EXCEPTIONS"
-          ],
-        }
+        }],
+        ['OS=="win"', {
+          'libraries': [
+            'ftrScanAPI.lib',
+          ], 
+          'link_settings': {
+            'library_dirs': [
+              'src/lib',
+            ]
+          },
+          'copies':[
+            { 
+              'destination': './build/Release',
+              'files':[
+                './src/lib/ftrScanAPI.dll'
+              ]
+            }
+          ]
+        }],
       ]
-    }],
-    ['OS=="win"', {
-      "targets": [
-        {
-          "target_name": "js-ftrscan-api",
-          "cflags!": [ "-fno-exceptions" ],
-          "cflags_cc!": [ "-fno-exceptions" ],
-          "sources": [
-            "./src/index.cpp"
-          ],
-          "libraries": [
-            "<(module_root_dir)/src/lib/ftrScanAPI.lib"
-          ],
-          "include_dirs": [
-            "<!@(node -p \"require('node-addon-api').include\")"
-          ],
-          "defines": [
-            "NAPI_VERSION=<(napi_build_version)",
-            "NAPI_DISABLE_CPP_EXCEPTIONS"
-          ],
-        }
-      ]
-    }],
+    }
   ]
 }
