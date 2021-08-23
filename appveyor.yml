@@ -11,4 +11,4 @@ install:
   - ps: Update-NodeJsInstallation (Get-NodeJsLatestBuild $env:nodejs_version)
   - npm install --build-from-source
 on_success:
-  - if [%prebuild%] == [true] if [%APPVEYOR_REPO_TAG%] == [true] npm run upload
+  - if [%prebuild%] == [true] if [%APPVEYOR_REPO_TAG%] == [true] npm run upload:win

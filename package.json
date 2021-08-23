@@ -12,6 +12,7 @@
   "gypfile": true,
   "scripts": {
     "install": "prebuild-install --runtime napi || node-gyp rebuild",
+    "clean": "node-gyp clean",
     "rebuild": "node-gyp rebuild",
     "prebuild": "prebuild --runtime napi --all --strip --verbose",
     "upload": "prebuild --runtime napi --upload ${GITHUB_TOKEN}",
